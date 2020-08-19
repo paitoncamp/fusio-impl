@@ -112,7 +112,7 @@ class User extends TableAbstract
      */
     public function setAttribute($userId, $name, $value)
     {
-        $row = $this->connection->fetchAssoc('SELECT id FROM fusio_user_attribute WHERE name = :name', ['name' => $name]);
+        $row = $this->connection->fetchAssoc('SELECT id FROM fusio_user_attribute WHERE name = :name and user_id = :userId', ['name' => $name, 'userId' => $userId]);
 
         if (empty($row)) {
             $this->connection->insert('fusio_user_attribute', [
